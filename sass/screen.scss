@@ -1,0 +1,1115 @@
+/*
+ *  taniapirozzi.com - styles for wordpress
+ * ------------------------------------------------------------------------- */
+
+/*
+ *  Imports
+ * ------------------------------------------------------------------------- */
+
+
+/*
+ *  Base Variables
+ * ------------------------------------------------------------------------- */
+$color-header: rgba(200, 200, 200, 0.65);
+$color-branding: #333333;
+$color-menu: #A6A6A5;
+$color-body: #EFEFEF;
+$color-section: #DDDDDD;
+$color-footer: #CCCCCC;
+$color-button: rgba(200, 200, 200, 0.65);
+
+$width: 900px;
+
+$border-body: 3px solid #333333;
+$border-widget: 2px solid #333333;
+$border-slideshow-nav: 1px solid #999999;
+$border-button: 1px solid #666666;
+$border-divider: solid 1px #333333;
+
+
+
+/*
+ *  Mixins
+ * ------------------------------------------------------------------------- */
+
+@mixin page-width($width) {
+  width: $width;
+  margin: 0 auto;
+}
+
+@mixin site-shadows {
+  -webkit-box-shadow: 0px 3px 5px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow: 0px 3px 5px rgba(50, 50, 50, 0.75);
+  box-shadow: 0px 3px 5px rgba(50, 50, 50, 0.75);
+}
+
+@mixin animate($property, $duration, $timing-function, $delay) {
+  transition: $property $duration $timing-function $delay;
+  -moz-transition: $property $duration $timing-function $delay;
+  -webkit-transition: $property $duration $timing-function $delay;
+  -o-transition: $property $duration $timing-function $delay;
+}
+
+@mixin animation($duration, $delay, $count) {
+  animation-duration: $duration;
+  animation-delay: $delay;
+  animation-iteration-count: $count;
+  -moz-animation-duration: $duration;
+  -moz-animation-delay: $delay;
+  -moz-animation-iteration-count: $count;
+  -webkit-animation-duration: $duration;
+  -webkit-animation-delay: $delay;
+  -webkit-animation-iteration-count: $count;
+  -ms-animation-duration: $duration;
+  -ms-animation-delay: $delay;
+  -ms-animation-iteration-count: $count;
+  -o-animation-duration: $duration;
+  -o-animation-delay: $delay;
+  -o-animation-iteration-count: $count;
+}
+
+/* currently only supports 'up' and 'down' orientation */
+@mixin arrow($arrow-height, $arrow-width, $orientation, $arrow-color) {
+  width: 0; 
+  height: 0;
+  margin: 0 auto;
+  position: relative;
+  border-left: $arrow-width solid transparent;
+  border-right: $arrow-width solid transparent;
+  @if $orientation == bottom {
+    border-top: $arrow-height solid $arrow-color;
+    margin-bottom: -$arrow-height;
+  }
+  @if $orientation == top {
+    border-bottom: $arrow-height solid $arrow-color;
+    margin-top: -$arrow-height;
+  }
+}
+
+
+
+/* =============================================================================
+   Base
+   ========================================================================== */
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-family: sans-serif;
+  color: #333;
+}
+
+button, input, select, textarea {
+  font-family: sans-serif;
+  color: #333;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+::-moz-selection, ::selection {
+  background: #1e9ec2;
+  color: #fff;
+  text-shadow: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section {
+  display: block;
+}
+
+audio, canvas, video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+
+audio:not([controls]), [hidden] {
+  display: none;
+}
+
+/* =============================================================================
+   Links
+   ========================================================================== */
+
+a {
+  color: #333;
+  text-decoration: none;
+  &:visited {
+    color: #446;
+  }
+  &:hover {
+    text-decoration: underline;
+  }
+  &:focus {
+    outline: thin dotted;
+  }
+  &:hover, &:active {
+    outline: 0;
+  }
+}
+
+/* =============================================================================
+   Typography
+   ========================================================================== */
+
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+b, strong {
+  font-weight: bold;
+}
+
+blockquote {
+  margin: 1em 40px;
+}
+
+dfn {
+  font-style: italic;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+ins {
+  background: #ff9;
+  color: #000;
+  text-decoration: none;
+}
+
+mark {
+  background: #ff0;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+pre, code, kbd, samp {
+  font-family: monospace, serif;
+  _font-family: 'courier new', monospace;
+  font-size: 1em;
+}
+
+pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+q {
+  quotes: none;
+  &:before, &:after {
+    content: "";
+    content: none;
+  }
+}
+
+small {
+  font-size: 85%;
+}
+
+sub {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+/* =============================================================================
+   Lists
+   ========================================================================== */
+
+ul, ol {
+  margin: 1em 0;
+  padding: 0 0 0 40px;
+}
+
+dd {
+  margin: 0 0 0 40px;
+}
+
+nav {
+  ul, ol {
+    list-style: none;
+    list-style-image: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* =============================================================================
+   Embedded content
+   ========================================================================== */
+
+img {
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+  vertical-align: middle;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/* =============================================================================
+   Figures
+   ========================================================================== */
+
+figure, form {
+  margin: 0;
+}
+
+/* =============================================================================
+   Forms
+   ========================================================================== */
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+label {
+  cursor: pointer;
+}
+
+legend {
+  border: 0;
+  *margin-left: -7px;
+  padding: 0;
+  white-space: normal;
+}
+
+button, input, select, textarea {
+  font-size: 100%;
+  margin: 0;
+  vertical-align: baseline;
+  *vertical-align: middle;
+}
+
+button, input {
+  line-height: normal;
+}
+
+button {
+  cursor: pointer;
+  -webkit-appearance: button;
+  *overflow: visible;
+}
+
+input {
+  &[type="button"], &[type="reset"], &[type="submit"] {
+    cursor: pointer;
+    -webkit-appearance: button;
+    *overflow: visible;
+  }
+}
+
+button[disabled] {
+  cursor: default;
+}
+
+input {
+  &[disabled] {
+    cursor: default;
+  }
+  &[type="checkbox"], &[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+    *width: 13px;
+    *height: 13px;
+  }
+  &[type="search"] {
+    -webkit-appearance: textfield;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    &::-webkit-search-decoration, &::-webkit-search-cancel-button {
+      -webkit-appearance: none;
+    }
+  }
+}
+
+button::-moz-focus-inner, input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+textarea {
+  overflow: auto;
+  vertical-align: top;
+  resize: vertical;
+}
+
+input:valid!, textarea:valid! {}
+
+input:invalid, textarea:invalid {
+  background-color: #f0dddd;
+}
+
+/* =============================================================================
+   Tables
+   ========================================================================== */
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td {
+  vertical-align: top;
+}
+
+/* =============================================================================
+   Chrome Frame Prompt
+   ========================================================================== */
+
+.chromeframe {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: black;
+  padding: 0.2em 0;
+}
+
+/* ==|== primary styles =====================================================
+   Author: Mimi Flynn mimi@mimiflynn.com
+   ========================================================================== */
+
+html {
+  &.js, &.no-touch {
+    display: none;
+  }
+}
+
+body {
+  background: $color-section;
+}
+
+h1, h2, h3, h4, p {
+  margin: 0;
+}
+
+iframe {
+  margin-bottom: 3em;
+}
+
+/*
+ * DOM
+ * -------------------------------------------------------------------------- */
+
+/* Set width */
+
+.wrapper, section.portfolio .project, .controller {
+  @include page-width($width);
+}
+
+#branding {
+  h1 a, .menus ul {
+    @include page-width($width);
+  }
+}
+
+/* Header */
+
+.no-touch #branding {
+  padding: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  background: $color-header;
+}
+
+#branding {
+  h1 {
+    width: 100%;
+    line-height: 50px;
+    font-size: 50px;
+    margin: 0;
+    padding: 0;
+    a {
+      display: block;
+      text-transform: uppercase;
+      line-height: 1em;
+      color: $color-branding;
+    }
+  }
+  .menus {
+    background: $color-branding;
+    width: 100%;
+    color: #FFFFFF;
+    margin-top: -7px;
+    @include site-shadows;
+    ul {
+      padding: 5px 0;
+      text-align: right;
+      li {
+        display: inline;
+        padding-left: 10px;
+        a {
+          color: $color-menu;
+        }
+      }
+    }
+  }
+}
+
+/* Content */
+
+#content {
+  width: 100%;
+  background: $color-body;
+  border-top: $border-body;
+  padding: 3em 0;
+  margin-top: 68px;
+  #main {
+    margin: 0 auto 20px auto;
+  }
+}
+
+/* Footer */
+
+#site-footer {
+  clear: both;
+  padding: 0 0 3em 0;
+  overflow: hidden;
+  background: $color-footer;
+  border-top: $border-body;
+  border-bottom: $border-body;
+}
+
+section#contact section, #site-footer section {
+  width: 50%;
+  float: left;
+  padding-top: 3em;
+  overflow: hidden;
+}
+
+section#contact {
+  section {
+    padding-top: 0;
+  }
+  .widgetContainer {
+    float: left;
+  }
+}
+
+#site-footer .widgetContainer {
+  float: left;
+}
+
+section#contact .widgetContainer.widget_nav_menu, #site-footer .widgetContainer.widget_nav_menu {
+  width: 25%;
+  margin: 0 10% 0 0;
+  padding-bottom: 5em;
+}
+
+section#contact .widgetContainer.mf-twitter, #site-footer .widgetContainer.mf-twitter {
+  width: 50%;
+  padding: 0;
+}
+
+section#contact .widgetContainer h3, #site-footer .widgetContainer h3 {
+  border-bottom: $border-widget;
+}
+
+/* Widgets */
+
+.widgetContainer {
+  padding-bottom: 50px;
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  &.mf-twitter {
+    ul {
+      padding-top: 1em;
+    }
+    li {
+      margin-bottom: 1em;
+      .tweet_time {
+        display: block;
+        text-align: right;
+        a {
+          color: #666666;
+        }
+      }
+    }
+  }
+}
+
+/* Homepage */
+
+.no-touch .home {
+  /*background: $home-background;*/
+  
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
+
+  #content {
+    position: absolute;
+    width: 100%;
+    top: 700px;
+    left: 0;
+    padding: 0;
+    background: $color-body;
+    z-index: 2;
+    border-top: $border-body;
+  }
+}
+
+.home #site-footer {
+  margin-top: 3em;
+}
+
+/* TODO:figure out necessary ratio to make responsive */
+
+section {
+  margin-bottom: 7em;
+  line-height: 1.5em;
+  p {
+    margin: 0 0 2em 0;
+  }
+  h2 {
+    font-size: 2.5em;
+    font-weight: normal;
+    line-height: normal;
+    p {
+      margin: 0;
+    }
+  }
+}
+
+article dl {
+  dt {
+    font-weight: bold;
+    font-size: 150%;
+  }
+  dd {
+    padding: 0 0 2em 0;
+    margin: 0;
+  }
+}
+
+.no-touch section.portfolio {
+  padding: 30px 0;
+  position: relative;
+}
+
+section.portfolio {
+  .slideshow-nav a, #slideshow, .controller, .controller-bar {
+    position: absolute;
+    left: 0;
+  }
+  #slideshow {
+    top: 40px;
+    @include site-shadows;
+  }
+  .slideshow-nav a {
+    top: 300px;
+    z-index: 20;
+    display: block;
+    background: $color-button;
+    padding: 10px;
+    border: $border-slideshow-nav;
+    font-weight: bold;
+  }
+  .controller-bar {
+    display: block;
+    background: $color-button;
+    padding: 10px;
+    border: $border-slideshow-nav;
+    font-weight: bold;
+  }
+  .slideshow-nav .prev {
+    left: 0;
+    border-left: none;
+  }
+  .controller-bar {
+    top: 40px;
+    z-index: 22;
+    border-top: none;
+    border-left: none;
+  }
+  .controller {
+    top: 225px;
+    z-index: 19;
+    display: none;
+  }
+}
+
+.no-touch section.portfolio .slideshow-nav .next {
+  left: 852px;
+  border-right: none;
+}
+
+.no-touch section.portfolio .project {
+  width: 900px;
+  height: 550px;
+  background: #FFFFFF;
+  .img-wrapper {
+    width: 900px;
+    height: 550px;
+    text-align: center;
+    a {
+      
+      text-align: center;
+    }
+  }
+}
+
+section {
+  &.portfolio {
+    .project .img-wrapper {
+      margin-bottom: 1em;
+      overflow: hidden;
+    }
+    .controller {
+      height: 200px;
+      overflow-y: hidden;
+      overflow-x: scroll;
+      ul {
+        width: 2600px;
+        li {
+          float: left;
+        }
+      }
+    }
+    .clicked {
+      display: none;
+    }
+    article h3 {
+      display: none;
+      position: absolute;
+      top: 510px;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      border-top: $border-divider;
+      font-size: 1.75em;
+      font-weight: normal;
+      background: $color-button;
+      text-align: center;
+      a {
+        color: #333333;
+        line-height: 40px;
+      }
+    }
+  }
+  &#contact, &.about, &.resume {
+    padding: 30px;
+    overflow: hidden;
+    background: $color-section;
+    clear: both;
+    @include site-shadows;
+  }
+  &.about h2 {
+    border-bottom: $border-body;
+  }
+  &.resume {
+    h2 {
+      border-bottom: $border-body;
+    }
+    article, aside {
+      float: left;
+      padding-top: 2em;
+    }
+    article {
+      width: 65%;
+      padding-right: 2.5%;
+      .tech img {
+        margin-right: 2em;
+      }
+    }
+    aside {
+      width: 25%;
+      padding-left: 2.5%;
+      padding-bottom: 50px;
+      border-left: $border-divider;
+      h3 {
+        font-size: 1.75em;
+        font-weight: normal;
+      }
+      img {
+        width: 100%;
+      }
+    }
+  }
+  &#main {
+    article {
+      h2 {
+        border-bottom: $border-body;
+      }
+      background: #FFFFFF;
+      padding: 30px;
+      /*a[href^="http"] {
+        background: #DDDDDD;
+        border: #999999 1px solid;
+        padding: 5px 10px;
+        &:before {
+          content: 'Visit ';
+        }
+      }*/
+    }
+    .img-wrapper {
+      width: 840px;
+      height: 600px;
+      overflow: hidden;
+      margin-bottom: 3em;
+      img {
+        width: 100%;
+      }
+    }
+    article, .img-wrapper {
+      @include site-shadows;
+    }
+    .entry-summary {
+    }
+  }
+  &.thumbs {
+    /* thumbnail section */
+    .thumbs {
+      
+      .category {
+        clear: both;
+        overflow: hidden;
+        margin-bottom: 3.5em;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+      
+        h3 {
+          border-bottom: #333333 solid 2px;
+          margin-bottom: 20px;
+        }
+      
+        .img-wrapper {
+          float: left;
+          margin: 0 0 20px 20px;
+        }
+      }
+    }
+  }
+}
+
+/* Single Pages */
+
+/*
+ * Touch 
+ * -------------------------------------------------------------------------- */
+
+.touch {
+  iframe {
+    display: none;
+  }
+  body {
+    background: none;
+    width: 100%;
+  }
+  #content {
+    #main {
+      margin: 0;
+      width: 100%;
+    }
+    margin: 0;
+    padding: 0;
+  }
+  .wrapper, .controller {
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+  }
+  #branding {
+    .menus ul, h1 a {
+      width: 80%;
+      height: auto;
+      margin: 0 auto;
+    }
+  }
+  section {
+    &.resume {
+      article, aside {
+        float: none;
+        width: 100%;
+        border: none;
+        padding: 0;
+        margin: 0 0 3em 0;
+      }
+    }
+    &#contact section {
+      float: none;
+      width: 100%;
+      border: none;
+      padding: 0;
+      margin: 0 0 3em 0;
+    }
+  }
+  #site-footer section, section#contact .widgetContainer.widget_nav_menu, #site-footer .widgetContainer.widget_nav_menu, section#contact .widgetContainer.mf-twitter, #site-footer .widgetContainer.mf-twitter {
+    float: none;
+    width: 100%;
+    border: none;
+    padding: 0;
+    margin: 0 0 3em 0;
+  }
+  #branding {
+    h1 {
+      font-size: 2em;
+    }
+    .menus {
+      margin-top: -4px;
+    }
+  }
+  section.portfolio {
+    #slideshow, .controller, .controller-bar, article h3 {
+      position: relative;
+    }
+    width: 430px;
+    height: 360px;
+    #slideshow {
+      width: 430px;
+      height: 360px;
+    }
+  }
+  #content .project .img {
+    width: 430px;
+    height: 360px;
+  }
+  .home {
+    #content .project .img-wrapper, section.portfolio .project {
+      width: 430px;
+      height: 360px;
+    }
+  }
+  section {
+    &.portfolio {
+      height: 400px;
+      width: 430px;
+      position: relative;
+      margin: 0 auto 3em auto;
+      .slideshow-nav {
+        width: 100%;
+        a {
+          top: 50%;
+          &.prev {
+            border-left: none;
+          }
+          &.next {
+            left: 380px;
+            border-right: none;
+          }
+        }
+        
+      }
+    }
+    &.resume {
+      aside img {
+        max-width: 462px;
+      }
+      .tech img {
+        width: 19%;
+        height: auto;
+        max-width: 100px;
+      }
+    }
+  }
+  #site-footer {
+    padding-top: 3em;
+  }
+  section#main .img-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* ==|== media queries ======================================================
+   EXAMPLE Media Query for Responsive Design.
+   This example overrides the primary ('mobile first') styles
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (max-width: 920px) {
+  /* Style adjustments for viewports that meet the condition - optimized for iPad */
+  .touch body {
+    width: 920px;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  /* Style adjustments for viewports that meet the condition - optimized for iPhone */
+  .touch {
+    body {
+      background: none;
+      width: 640px;
+    }
+    section#main .img-wrapper {
+      width: 580px;
+      height: auto;
+      img {
+        height: auto;
+      }
+    }
+  }
+}
+
+/* ==|== non-semantic helper classes ========================================
+   Please define your styles before this section.
+   ========================================================================== */
+
+/* For image replacement */
+
+.ir {
+  border: 0;
+  font: 0 / 0 a;
+  text-shadow: none;
+  color: transparent;
+  background-color: transparent;
+}
+
+/* Hide from both screenreaders and browsers: h5bp.com/u */
+
+.hidden {
+  display: none !important;
+  visibility: hidden;
+}
+
+/* Hide only visually, but have it available for screenreaders: h5bp.com/v */
+
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  &.focusable {
+    &:active, &:focus {
+      clip: auto;
+      height: auto;
+      margin: 0;
+      overflow: visible;
+      position: static;
+      width: auto;
+    }
+  }
+}
+
+/* Extends the .visuallyhidden class to allow the element to be focusable when navigated to via the keyboard: h5bp.com/p */
+
+/* Hide visually and from screenreaders, but maintain layout */
+
+.invisible {
+  visibility: hidden;
+}
+
+/* Contain floats: h5bp.com/q */
+
+.clearfix {
+  &:before {
+    content: "";
+    display: table;
+  }
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  *zoom: 1;
+}
+
+/* ==|== print styles =======================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  /* Black prints faster: h5bp.com/s */
+  a {
+    text-decoration: underline;
+    &:visited {
+      text-decoration: underline;
+    }
+    &[href]:after {
+      content: " (" attr(href) ")";
+    }
+  }
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+  .ir a:after {
+    content: "";
+  }
+  a {
+    &[href^="javascript:"]:after, &[href^="#"]:after {
+      content: "";
+    }
+  }
+  /* Don't show links for images, or javascript/internal links */
+  pre, blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  thead {
+    display: table-header-group;
+  }
+  /* h5bp.com/t */
+  tr {
+    page-break-inside: avoid;
+  }
+  img {
+    page-break-inside: avoid;
+    max-width: 100% !important;
+  }
+  @page {
+    margin: 0.5cm;
+  }
+
+  p, h2, h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2, h3 {
+    page-break-after: avoid;
+  }
+}
