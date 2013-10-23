@@ -13,8 +13,9 @@ WordPress theme used on my [personal portfolio](http://mimiflynn.com), [Kelly M 
 
 ## Disclaimer
 
-This site takes a bit of configuring since it was hand tailored to my site (and a couple other portfolio sites). Its not really super ready to be released, but yet, here we are.
+This theme takes a bit of configuring since it was hand tailored to my site (and a couple other portfolio sites). Its not really super ready to be released, but yet, here we are, for learning purposes, if you will.
 
 ## To Do
 
 - make main menu and scroll work more magically
+- make theme a little more plug and play
