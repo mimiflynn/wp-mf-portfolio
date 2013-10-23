@@ -248,9 +248,9 @@ add_action( 'wp_head', 'mimiflynn_customize_css' );
  */
 
 function nls2p( $str ) {
-return str_replace('<p></p>', '', '<p>'
-. preg_replace('#([\r\n]\s*?[\r\n]){2,}#', '</p>$0<p>', $str)
-. '</p>');
+  return str_replace('<p></p>', '', '<p>'
+  . preg_replace('#([\r\n]\s*?[\r\n]){2,}#', '</p>$0<p>', $str)
+  . '</p>');
 }
 
  
